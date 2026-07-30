@@ -1,0 +1,31 @@
+# FreightX API — Python Dependencies
+# INTERVIEW NOTE: requirements.txt is the simplest dependency management.
+# In production, you might use Poetry (pyproject.toml) or pip-tools for lock files.
+# Interviewers ask: "How do you manage Python dependencies?" — know the trade-offs.
+
+# Core framework
+fastapi==0.115.12
+uvicorn[standard]==0.34.2        # ASGI server — the "u" in uvicorn = "micro"
+
+# Data validation (FastAPI's backbone)
+pydantic==2.11.3
+pydantic-settings==2.9.1         # Environment variable management via .env
+
+# Async HTTP client (replaces `requests` for async code)
+httpx==0.28.1
+
+# Supabase Python client
+supabase==2.13.0
+
+# Stripe webhook verification
+stripe==12.2.0
+
+# Security
+python-jose[cryptography]==3.4.0  # JWT handling (if needed later)
+
+# Rate limiting
+slowapi==0.1.9
+
+# CORS, logging, utils
+python-dotenv==1.1.0
+python-multipart==0.0.20          # Required for form data / file uploads

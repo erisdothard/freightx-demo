@@ -1,0 +1,302 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --fx-bg: #0d0d0d;
+    --fx-surface: #1c1c1e;
+    --fx-surface-2: #2c2c2e;
+    --fx-surface-3: #3a3a3c;
+    --fx-border: #38383a;
+    --fx-border-2: #48484a;
+    --fx-text: #ffffff;
+    --fx-text-muted: #ebebf5;
+    --fx-text-dim: #636366;
+    /* Semantic status colors */
+    --fx-success: #34d399;
+    --fx-success-dim: rgba(52, 211, 153, 0.15);
+    --fx-warning: #fbbf24;
+    --fx-warning-dim: rgba(251, 191, 36, 0.15);
+    --fx-danger: #f87171;
+    --fx-danger-dim: rgba(248, 113, 113, 0.15);
+    --fx-info: #60a5fa;
+    --fx-info-dim: rgba(96, 165, 250, 0.15);
+    /* Glass & dividers */
+    --fx-glass-bg: rgba(18, 16, 14, 0.82);
+    --fx-divider: rgba(255, 255, 255, 0.06);
+  }
+
+  * {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html,
+  body {
+    background-color: #0d0d0d;
+    color: #ffffff;
+    font-family:
+      'Inter',
+      -apple-system,
+      BlinkMacSystemFont,
+      'SF Pro Display',
+      system-ui,
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  #root {
+    max-width: 430px;
+    margin: 0 auto;
+    min-height: 100dvh;
+    position: relative;
+    /* Subtle warm dark gradient — matching screenshot */
+    background: linear-gradient(175deg, #191410 0%, #131110 35%, #0e0d0d 70%, #0d0d0d 100%);
+    overflow-x: hidden;
+  }
+
+  @media (min-width: 500px) {
+    body {
+      background-color: #050505;
+    }
+    #root {
+      box-shadow:
+        0 0 0 1px rgba(60, 50, 40, 0.3),
+        0 0 80px rgba(0, 0, 0, 0.95),
+        0 20px 80px rgba(0, 0, 0, 0.8);
+    }
+  }
+
+  input,
+  textarea,
+  select {
+    outline: none;
+  }
+  input[type='text'],
+  input[type='email'],
+  input[type='password'],
+  input[type='tel'],
+  input[type='number'] {
+    -webkit-appearance: none;
+  }
+}
+
+@layer components {
+  /* iOS frosted glass */
+  .ios-blur {
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    background: rgba(18, 16, 14, 0.82);
+  }
+
+  /* Orange gradient — matches the reference cards exactly */
+  .bg-orange-gradient {
+    background: linear-gradient(145deg, #f07040 0%, #e05828 45%, #c03a12 100%);
+  }
+
+  /* Card inner highlight — iOS depth feel */
+  .card-highlight {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+      0 4px 24px rgba(0, 0, 0, 0.5);
+  }
+
+  .card-orange-highlight {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.18),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+      0 8px 40px rgba(232, 96, 48, 0.38);
+  }
+
+  /* Noise grain texture on orange cards — subtle film grain */
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0.06;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    background-size: 128px 128px;
+    mix-blend-mode: overlay;
+  }
+
+  /* Orange accent stripe at very top of screen */
+  .top-accent::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 430px;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      #e86030 30%,
+      #f07040 50%,
+      #e86030 70%,
+      transparent 100%
+    );
+    z-index: 9999;
+    pointer-events: none;
+  }
+}
+
+/* Light theme overrides */
+html.light,
+html.light body,
+html.light #root {
+  --fx-bg: #f5f3f0;
+  --fx-surface: #ffffff;
+  --fx-surface-2: #f0ede8;
+  --fx-surface-3: #e8e5e0;
+  --fx-border: rgba(0, 0, 0, 0.08);
+  --fx-border-2: rgba(0, 0, 0, 0.12);
+  --fx-text: #1a1815;
+  --fx-text-muted: #6b6560;
+  --fx-text-dim: #9b9590;
+  /* Semantic status colors — light mode */
+  --fx-success: #059669;
+  --fx-success-dim: rgba(5, 150, 105, 0.1);
+  --fx-warning: #d97706;
+  --fx-warning-dim: rgba(217, 119, 6, 0.1);
+  --fx-danger: #dc2626;
+  --fx-danger-dim: rgba(220, 38, 38, 0.1);
+  --fx-info: #2563eb;
+  --fx-info-dim: rgba(37, 99, 235, 0.1);
+  /* Glass & dividers */
+  --fx-glass-bg: rgba(255, 255, 255, 0.82);
+  --fx-divider: rgba(0, 0, 0, 0.06);
+}
+
+html.light body {
+  background-color: #e8e5e0;
+  color: #1a1815;
+}
+
+html.light #root {
+  background: linear-gradient(175deg, #faf8f5 0%, #f5f3f0 35%, #f0ede8 70%, #ebe8e3 100%);
+}
+
+html.light .ios-blur {
+  background: rgba(255, 255, 255, 0.82);
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@layer utilities {
+  .animate-slide-up {
+    animation: slide-up 0.32s cubic-bezier(0.32, 0.72, 0, 1) both;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 16px);
+  }
+  .pt-safe {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  /* iOS spring active */
+  .active-scale:active {
+    transform: scale(0.96);
+    transition: transform 0.1s;
+  }
+}
+
+@media (min-width: 500px) {
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #38383a;
+    border-radius: 2px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #e86030;
+  }
+}
+
+/* ── Leaflet / Apple Maps overrides ─────────────────────────── */
+.leaflet-container {
+  background: #181820;
+  font-family: inherit;
+}
+.leaflet-container a {
+  color: #e86030;
+}
+.leaflet-interactive:focus {
+  outline: none;
+}
+/* Hide default Leaflet tile edge seams on dark bg */
+.leaflet-tile-pane {
+  opacity: 0.96;
+}
+
+/* Glass tooltip */
+.leaflet-tooltip {
+  background: rgba(14, 14, 22, 0.78) !important;
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 10px !important;
+  color: #fff !important;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.55) !important;
+  white-space: nowrap;
+}
+.leaflet-tooltip::before {
+  display: none !important;
+}
+
+/* Pulse ring for live markers */
+@keyframes fx-pulse-ring {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  60% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+.fx-pulse-ring {
+  position: relative;
+}
+.fx-pulse-ring::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: currentColor;
+  animation: fx-pulse-ring 1.8s ease-out infinite;
+  pointer-events: none;
+}

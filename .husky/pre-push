@@ -1,0 +1,25 @@
+echo ""
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "  FreightX pre-push checks"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+# 1. Format check
+echo "\n▶ Checking formatting..."
+pnpm format:check || { echo "❌ Formatting issues — run 'npx prettier --write' to fix"; exit 1; }
+echo "✅ Formatting passed"
+
+# 2. Type check
+echo "\n▶ Typechecking..."
+pnpm --filter @freightx/web typecheck || { echo "❌ Typecheck failed — fix errors before pushing"; exit 1; }
+echo "✅ Typecheck passed"
+
+# 3. Run tests
+echo "\n▶ Running tests..."
+pnpm test || { echo "❌ Tests failed — fix failing tests before pushing"; exit 1; }
+echo "✅ All tests passed"
+
+echo ""
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "  ✅ All checks passed — pushing"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo ""

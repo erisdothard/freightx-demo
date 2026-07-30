@@ -1,0 +1,28 @@
+<svg viewBox="0 0 800 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- The gradient from the screenshot: Orange -> Darker Brownish/Orange -->
+    <linearGradient id="user-grad-1" x1="0" y1="0" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#E86030" />
+        <stop offset="33%" stop-color="#D05020" />
+        <stop offset="66%" stop-color="#8B4513" />
+        <stop offset="100%" stop-color="#5D4037" />
+    </linearGradient>
+  </defs>
+
+  <!-- THE EMBLEM: Three distinct chevrons pointing RIGHT -->
+  <g transform="translate(40, 40) scale(1.0)">
+      <!-- Chevron 1 (Brightest) -->
+      <path d="M0 0 L40 0 L80 60 L40 120 L0 120 L40 60 Z" fill="#E86030"/>
+      
+      <!-- Chevron 2 (Mid) -->
+      <path d="M50 0 L90 0 L130 60 L90 120 L50 120 L90 60 Z" fill="#BF502D"/> 
+      
+      <!-- Chevron 3 (Darkest) -->
+      <path d="M100 0 L140 0 L180 60 L140 120 L100 120 L140 60 Z" fill="#6A4032"/>
+  </g>
+
+  <!-- TYPOGRAPHY: FREIGHT (White) X (Orange) -->
+  <!-- Sans serif, bold, uppercase -->
+  <text x="250" y="135" font-family="'Inter', -apple-system, sans-serif" font-weight="700" font-size="90" fill="#FFFFFF" letter-spacing="2">FREIGHT</text>
+  <text x="650" y="135" font-family="'Inter', -apple-system, sans-serif" font-weight="400" font-size="90" fill="#E86030">X</text>
+</svg>

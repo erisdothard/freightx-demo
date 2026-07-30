@@ -1,0 +1,5 @@
+{
+  "permissions": {
+    "allow": ["auto resume - auto approve all bash and webfetch and simular permsissions"]
+  }
+}

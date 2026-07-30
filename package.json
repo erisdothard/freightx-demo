@@ -1,0 +1,57 @@
+{
+  "name": "freightx",
+  "private": true,
+  "packageManager": "pnpm@10.29.2",
+  "engines": {
+    "node": "20.x"
+  },
+  "scripts": {
+    "dev:web": "turbo run dev --filter=@freightx/web",
+    "dev:academy": "turbo run dev --filter=freightx-academy",
+    "dev:all": "turbo run dev --filter=@freightx/web --filter=freightx-academy",
+    "build": "turbo run build",
+    "build:web": "turbo run build --filter=@freightx/web",
+    "build:academy": "turbo run build --filter=freightx-academy",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,css}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,css}\"",
+    "clean": "turbo run clean",
+    "prepare": "husky || true",
+    "health-check": "node scripts/health-check.js",
+    "security-audit": "node scripts/security-audit.js",
+    "audit": "node scripts/audit.js",
+    "seed": "node scripts/seed-data.js",
+    "db:maintenance": "node scripts/db-maintenance.js",
+    "deploy": "node scripts/deploy.js",
+    "load-test": "node scripts/load-test.js",
+    "perf-monitor": "node scripts/performance-monitor.js"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19",
+    "@commitlint/config-conventional": "^19",
+    "husky": "^9",
+    "lint-staged": "^15",
+    "prettier": "^3",
+    "turbo": "^2"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "prettier --write"
+    ],
+    "*.{json,md,yaml,yml,css}": [
+      "prettier --write"
+    ]
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp",
+      "unrs-resolver"
+    ],
+    "ignoredBuiltDependencies": [
+      "core-js"
+    ]
+  }
+}

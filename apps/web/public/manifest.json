@@ -1,0 +1,57 @@
+{
+  "name": "FreightX",
+  "short_name": "FreightX",
+  "description": "The freight load board built for carriers, brokers, and shippers.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B0F19",
+  "theme_color": "#F97316",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en-US",
+  "categories": ["business", "productivity"],
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/og-image.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "label": "FreightX load board"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Post a Load",
+      "short_name": "Post Load",
+      "description": "Quickly post a new freight load",
+      "url": "/broker/loads",
+      "icons": [{ "src": "/logo.svg", "sizes": "any" }]
+    },
+    {
+      "name": "View Available Loads",
+      "short_name": "Loads",
+      "description": "Browse available freight loads",
+      "url": "/carrier/loads",
+      "icons": [{ "src": "/logo.svg", "sizes": "any" }]
+    }
+  ]
+}

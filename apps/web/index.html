@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0B0F19" />
+  <meta name="description"
+    content="FreightX — The modern freight marketplace. Connect carriers, brokers, and shippers. Post loads, bid instantly, track in real time." />
+  <meta name="application-name" content="FreightX" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="FreightX" />
+  <title>FreightX — Move Freight Smarter</title>
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://freightx.io" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/logo.svg" />
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="FreightX — Move Freight Smarter" />
+  <meta property="og:description" content="The modern freight marketplace for carriers, brokers, and shippers." />
+  <meta property="og:image" content="https://freightx.io/og-image.png" />
+  <meta property="og:url" content="https://freightx.io" />
+  <meta property="og:site_name" content="FreightX" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@freightx" />
+  <meta name="twitter:title" content="FreightX — Move Freight Smarter" />
+  <meta name="twitter:description" content="The modern freight marketplace for carriers, brokers, and shippers." />
+  <meta name="twitter:image" content="https://freightx.io/og-image.png" />
+
+  <!-- Loading spinner animation -->
+  <style>
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+  </style>
+
+  <!-- DNS Prefetch for external services -->
+  <link rel="dns-prefetch" href="https://qeovhjdrwihnyfcbnujk.supabase.co" />
+  <link rel="dns-prefetch" href="https://js.stripe.com" />
+
+  <!-- Preconnect for fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+  <div id="root">
+    <div
+      style="height: 100vh; width: 100vw; display: flex; align-items: center; justify-content: center; background-color: #0d0d0d; flex-direction: column; gap: 1rem;">
+      <div
+        style="width: 40px; height: 40px; border: 3px solid #38383a; border-top: 3px solid #e86030; border-radius: 50%; animation: spin 1s linear infinite;">
+      </div>
+    </div>
+  </div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
+</html>

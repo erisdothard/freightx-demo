@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+Allow: /privacy
+Allow: /terms
+
+# Disallow authenticated app pages from indexing
+Disallow: /carrier/
+Disallow: /broker/
+Disallow: /shipper/
+Disallow: /messages
+Disallow: /profile
+Disallow: /track/
+Disallow: /onboarding
+Disallow: /reset-password
+
+Sitemap: https://freightx.io/sitemap.xml
