@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState, useCallback } from 'react';
+import { createContext, useContext, useEffect, useRef, useState, useCallback } from 'react';
 import type { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/lib/supabase';
 import type { ProfileRow, CompanyRow, UserRole } from '@/lib/database.types';
@@ -128,6 +128,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(!restored);
   const [isDemo, setIsDemo] = useState(!!restored);
 
+  // Mirrors isDemo for the async auth callbacks below. Those close over state
+  // from the render that registered them, so they need a ref to see a demo
+  // session that started after they were kicked off.
+  const demoRef = useRef(!!restored);
+
   const fetchCompany = useCallback(async (profileId: string, role?: string) => {
     // 1. For non-drivers, check owned company first
     if (role !== 'driver') {
@@ -191,6 +196,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     supabase.auth
       .getSession()
       .then(({ data: { session } }) => {
+        // Demo mode may have started while this was in flight (e.g. landing
+        // straight on /demo). Applying a null session here would wipe it.
+        if (demoRef.current) return;
+
         setSession(session);
         setUser(session?.user ?? null);
         if (session?.user) {
@@ -200,6 +209,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
       })
       .catch((err) => {
+        if (demoRef.current) return;
         console.error('Auth initialization error:', err);
         setLoading(false);
       });
@@ -207,6 +217,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (demoRef.current) return;
+
       setSession(session);
       setUser(session?.user ?? null);
       if (session?.user) {
@@ -263,6 +275,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const signOut = useCallback(async () => {
     if (!isDemo) await supabase.auth.signOut();
+    demoRef.current = false;
     try {
       sessionStorage.removeItem(DEMO_STORAGE_KEY);
     } catch {
@@ -277,6 +290,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const enterDemoMode = useCallback((role: UserRole) => {
     const demo = buildDemoState(role);
+    demoRef.current = true;
 
     try {
       sessionStorage.setItem(DEMO_STORAGE_KEY, role);

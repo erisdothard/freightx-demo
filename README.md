@@ -6,9 +6,12 @@
 
 Built as a commissioned production system for 3 Aces Trucking Inc., a Nashville-based carrier.
 
-[**▶ Live demo**](https://freightx-demo.vercel.app/login) · [Architecture](#architecture) · [Engineering highlights](#engineering-highlights) · [Run it locally](#run-it-locally)
+[**▶ Live demo**](https://freightx-demo.vercel.app/demo) · [Architecture](#architecture) · [Engineering highlights](#engineering-highlights) · [Run it locally](#run-it-locally)
 
-_No signup — pick any role under **Demo Mode** on the login screen._
+_Opens straight into a carrier account — no login, no signup. Swap roles at
+[/demo/broker](https://freightx-demo.vercel.app/demo/broker) ·
+[/demo/driver](https://freightx-demo.vercel.app/demo/driver) ·
+[/demo/shipper](https://freightx-demo.vercel.app/demo/shipper)_
 
 </div>
 
@@ -69,7 +72,7 @@ Brokers and carriers can hold **both** authorities — the app ships a role swit
 
 ## Try it without a backend
 
-The live demo runs entirely client-side. Pick a role on the login screen under **Demo Mode** and you get a fully populated account — no signup, no database.
+The live demo runs entirely client-side. [`/demo`](https://freightx-demo.vercel.app/demo) drops you straight into a fully populated account — no login screen, no signup, no database. Append a role to pick one: `/demo/broker`, `/demo/driver`, `/demo/shipper`. The same roles are also available under **Demo Mode** on the login page.
 
 It works because every service short-circuits on a `demo-` user ID prefix:
 

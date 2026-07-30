@@ -23,6 +23,7 @@ import ResetPasswordPage from '@/pages/reset-password';
 import OnboardingPage from '@/pages/onboarding';
 import ClaimAccountPage from '@/pages/claim-account';
 import AuthCallbackPage from '@/pages/auth-callback';
+import DemoPage from '@/pages/demo';
 
 // Lazy-loaded — only downloaded when the user navigates to that role
 const CarrierDashboard = lazyRetry(() => import('@/pages/carrier/dashboard'));
@@ -80,6 +81,8 @@ export default function App() {
           {/* Public */}
           <Route path="/" element={<SplashPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/demo" element={<DemoPage />} />
+          <Route path="/demo/:role" element={<DemoPage />} />
           <Route path="/onboarding" element={<OnboardingPage />} />
           <Route path="/invite/:token" element={<OnboardingPage />} />
           <Route path="/claim-account" element={<ClaimAccountPage />} />
