@@ -6,7 +6,9 @@
 
 Built as a commissioned production system for 3 Aces Trucking Inc., a Nashville-based carrier.
 
-[**▶ Live demo**](#) · [Architecture](#architecture) · [Engineering highlights](#engineering-highlights) · [Run it locally](#run-it-locally)
+[**▶ Live demo**](https://freightx-demo.vercel.app/login) · [Architecture](#architecture) · [Engineering highlights](#engineering-highlights) · [Run it locally](#run-it-locally)
+
+_No signup — pick any role under **Demo Mode** on the login screen._
 
 </div>
 
