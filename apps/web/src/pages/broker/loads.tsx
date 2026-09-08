@@ -69,8 +69,8 @@ export default function BrokerLoadsPage() {
   const [sortBy, setSortBy] = useState<SortKey>('newest');
   const [showSortMenu, setShowSortMenu] = useState(false);
   const [tab, setTab] = useState<PageTab>('active');
-  const [viewMode, setViewMode] = useState<'full' | 'compact'>(() =>
-    (localStorage.getItem('fx_broker_load_view') as 'full' | 'compact') || 'full',
+  const [viewMode, setViewMode] = useState<'full' | 'compact'>(
+    () => (localStorage.getItem('fx_broker_load_view') as 'full' | 'compact') || 'full',
   );
 
   // Open post sheet when navigated here via "Post Load" nav tab
@@ -204,20 +204,32 @@ export default function BrokerLoadsPage() {
           <TabsList className="w-full bg-fx-surface-2">
             <TabsTrigger
               value="active"
-              className={cn('flex-1', tab === 'active' && 'bg-fx-orange text-white data-[state=active]:bg-fx-orange data-[state=active]:text-white')}
+              className={cn(
+                'flex-1',
+                tab === 'active' &&
+                  'bg-fx-orange text-white data-[state=active]:bg-fx-orange data-[state=active]:text-white',
+              )}
             >
               Active
             </TabsTrigger>
             <TabsTrigger
               value="history"
-              className={cn('flex-1', tab === 'history' && 'bg-fx-orange text-white data-[state=active]:bg-fx-orange data-[state=active]:text-white')}
+              className={cn(
+                'flex-1',
+                tab === 'history' &&
+                  'bg-fx-orange text-white data-[state=active]:bg-fx-orange data-[state=active]:text-white',
+              )}
             >
               History
               {historyLoads.length > 0 && (
-                <span className={cn(
-                  'ml-1.5 text-[10px] font-bold px-1.5 py-0.5 rounded-full',
-                  tab === 'history' ? 'bg-white/20 text-white' : 'bg-fx-surface-3 text-fx-text-muted',
-                )}>
+                <span
+                  className={cn(
+                    'ml-1.5 text-[10px] font-bold px-1.5 py-0.5 rounded-full',
+                    tab === 'history'
+                      ? 'bg-white/20 text-white'
+                      : 'bg-fx-surface-3 text-fx-text-muted',
+                  )}
+                >
                   {historyLoads.length}
                 </span>
               )}
@@ -360,7 +372,11 @@ export default function BrokerLoadsPage() {
           />
         ) : sortedLoads.length === 0 ? (
           <EmptyState
-            icon={<span className="text-5xl">{tab === 'history' ? '\ud83d\uddc2\ufe0f' : '\ud83d\udce6'}</span>}
+            icon={
+              <span className="text-5xl">
+                {tab === 'history' ? '\ud83d\uddc2\ufe0f' : '\ud83d\udce6'}
+              </span>
+            }
             title={tab === 'history' ? 'No past loads yet' : 'No loads found'}
             subtitle={
               tab === 'history'
@@ -381,7 +397,13 @@ export default function BrokerLoadsPage() {
         ) : tab === 'history' ? (
           <div className="space-y-3">
             {sortedLoads.map((load) => (
-              <LoadCard key={load.id} load={load} showBidButton={false} onPress={setSelectedLoad} variant={viewMode} />
+              <LoadCard
+                key={load.id}
+                load={load}
+                showBidButton={false}
+                onPress={setSelectedLoad}
+                variant={viewMode}
+              />
             ))}
           </div>
         ) : statusFilter === 'All' ? (
@@ -414,7 +436,13 @@ export default function BrokerLoadsPage() {
           </div>
         ) : (
           sortedLoads.map((load) => (
-            <LoadCard key={load.id} load={load} showBidButton={false} onPress={setSelectedLoad} variant={viewMode} />
+            <LoadCard
+              key={load.id}
+              load={load}
+              showBidButton={false}
+              onPress={setSelectedLoad}
+              variant={viewMode}
+            />
           ))
         )}
       </div>

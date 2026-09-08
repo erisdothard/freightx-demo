@@ -33,9 +33,7 @@ export function UpgradePrompt({ feature, className }: UpgradePromptProps) {
         <div className="w-12 h-12 rounded-2xl bg-fx-surface-3 border border-fx-border flex items-center justify-center mb-3">
           <Lock size={20} className="text-fx-text-dim" />
         </div>
-        <h4 className="text-sm font-semibold text-fx-text mb-1">
-          {info.title}
-        </h4>
+        <h4 className="text-sm font-semibold text-fx-text mb-1">{info.title}</h4>
         <p className="text-xs text-fx-text-dim mb-4">
           Upgrade to {info.tier} to unlock this feature
         </p>

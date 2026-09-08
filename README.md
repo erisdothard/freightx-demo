@@ -23,9 +23,9 @@ Freight moves through a chain of parties who all need different views of the sam
 
 FreightX puts the whole chain in one application, with each role getting a purpose-built interface over shared real-time state.
 
-|             | What they do here                                                                    |
-| ----------- | ------------------------------------------------------------------------------------ |
-| **Broker**  | Post loads, review incoming bids, counter, award, issue rate confirmations           |
+|             | What they do here                                                                     |
+| ----------- | ------------------------------------------------------------------------------------- |
+| **Broker**  | Post loads, review incoming bids, counter, award, issue rate confirmations            |
 | **Carrier** | Search the load board, bid and negotiate, dispatch drivers, manage fleet and payments |
 | **Driver**  | Run assigned loads, share GPS, log HOS, capture receipts, sign BOLs                   |
 | **Shipper** | Post freight, track shipments live, confirm delivery receipt                          |
@@ -38,16 +38,16 @@ Brokers and carriers can hold **both** authorities — the app ships a role swit
 
 <div align="center">
 
-| Carrier dashboard | Load board |
-| :---: | :---: |
+|                                                                Carrier dashboard                                                                 |                                                                  Load board                                                                  |
+| :----------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------: |
 | <img src="docs/screenshots/02-carrier-dashboard.png" width="320" alt="Carrier dashboard showing active negotiations and loads needing dispatch"> | <img src="docs/screenshots/03-load-board.png" width="320" alt="Load board with natural-language search and loads grouped by pipeline stage"> |
 
-| Broker dashboard | Broker load management |
-| :---: | :---: |
+|                                                            Broker dashboard                                                            |                                              Broker load management                                              |
+| :------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------: |
 | <img src="docs/screenshots/04-broker-dashboard.png" width="320" alt="Broker dashboard with bids awaiting review and revenue overview"> | <img src="docs/screenshots/05-broker-loads.png" width="320" alt="Broker load list filtered by lifecycle status"> |
 
-| Driver | Shipper |
-| :---: | :---: |
+|                                                                   Driver                                                                    |                                                          Shipper                                                           |
+| :-----------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------: |
 | <img src="docs/screenshots/06-driver-dashboard.png" width="320" alt="Driver dashboard showing the next required action on the active load"> | <img src="docs/screenshots/07-shipper-dashboard.png" width="320" alt="Shipper dashboard with shipments needing attention"> |
 
 </div>
@@ -117,28 +117,28 @@ freightx/
 
 ### Stack
 
-| Layer        | Choice                                            | Why                                                            |
-| ------------ | ------------------------------------------------- | -------------------------------------------------------------- |
-| UI           | React 19 + Vite 6, TypeScript strict              | SPA; fast HMR, no SSR requirement for an authenticated tool     |
-| Styling      | Tailwind v3, custom `fx-*` token namespace        | iOS-inspired dark theme, not a component-library default        |
-| Server state | TanStack Query v5                                 | Cache and invalidation without hand-rolled loading state        |
-| Data         | Supabase (Postgres, Auth, Storage, Realtime)      | RLS as the authorization layer                                  |
-| Maps         | Leaflet + react-leaflet, Mapbox GL                | Live tracking, fleet view, lane heatmaps                        |
-| Payments     | Stripe Checkout + invoicing                       | Subscriptions and settlement                                    |
-| AI           | Claude (Haiku for parsing, Sonnet for rate suggestion) | Natural-language load search                               |
-| Documents    | jsPDF + pdf-lib                                   | Rate confirmations, signed BOLs                                 |
-| Infra        | Vercel, Turborepo, pnpm, GitHub Actions           | Monorepo builds, auto-deploy on merge                           |
+| Layer        | Choice                                                 | Why                                                         |
+| ------------ | ------------------------------------------------------ | ----------------------------------------------------------- |
+| UI           | React 19 + Vite 6, TypeScript strict                   | SPA; fast HMR, no SSR requirement for an authenticated tool |
+| Styling      | Tailwind v3, custom `fx-*` token namespace             | iOS-inspired dark theme, not a component-library default    |
+| Server state | TanStack Query v5                                      | Cache and invalidation without hand-rolled loading state    |
+| Data         | Supabase (Postgres, Auth, Storage, Realtime)           | RLS as the authorization layer                              |
+| Maps         | Leaflet + react-leaflet, Mapbox GL                     | Live tracking, fleet view, lane heatmaps                    |
+| Payments     | Stripe Checkout + invoicing                            | Subscriptions and settlement                                |
+| AI           | Claude (Haiku for parsing, Sonnet for rate suggestion) | Natural-language load search                                |
+| Documents    | jsPDF + pdf-lib                                        | Rate confirmations, signed BOLs                             |
+| Infra        | Vercel, Turborepo, pnpm, GitHub Actions                | Monorepo builds, auto-deploy on merge                       |
 
 ### By the numbers
 
-|                     |     |
-| ------------------- | --- |
-| TypeScript files    | 265 |
-| Application routes  | 53  |
-| SQL migrations      | 104 |
-| Edge functions      | 17  |
-| Tests passing       | 365 |
-| Development phases  | 22  |
+|                    |     |
+| ------------------ | --- |
+| TypeScript files   | 265 |
+| Application routes | 53  |
+| SQL migrations     | 104 |
+| Edge functions     | 17  |
+| Tests passing      | 365 |
+| Development phases | 22  |
 
 ---
 
@@ -168,13 +168,13 @@ pnpm lint             # ESLint
 
 ## Documentation
 
-| Document                                                                            | Contents                                              |
-| ----------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| [`docs/FEATURE_CATALOG.md`](docs/FEATURE_CATALOG.md)                                 | Every feature across 21 domains, with build status    |
-| [`docs/IMPLEMENTATION_STATUS.md`](docs/IMPLEMENTATION_STATUS.md)                     | Source-audited record of what is actually built       |
-| [`docs/ENTERPRISE_GPS_ARCHITECTURE.md`](docs/ENTERPRISE_GPS_ARCHITECTURE.md)         | Location pipeline design                              |
-| [`docs/COMPETITIVE_ANALYSIS_AND_ROADMAP.md`](docs/COMPETITIVE_ANALYSIS_AND_ROADMAP.md) | DAT/Truckstop gap analysis                          |
-| [`docs/phases/`](docs/phases/)                                                       | All 22 phase guides, in order                         |
+| Document                                                                               | Contents                                           |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| [`docs/FEATURE_CATALOG.md`](docs/FEATURE_CATALOG.md)                                   | Every feature across 21 domains, with build status |
+| [`docs/IMPLEMENTATION_STATUS.md`](docs/IMPLEMENTATION_STATUS.md)                       | Source-audited record of what is actually built    |
+| [`docs/ENTERPRISE_GPS_ARCHITECTURE.md`](docs/ENTERPRISE_GPS_ARCHITECTURE.md)           | Location pipeline design                           |
+| [`docs/COMPETITIVE_ANALYSIS_AND_ROADMAP.md`](docs/COMPETITIVE_ANALYSIS_AND_ROADMAP.md) | DAT/Truckstop gap analysis                         |
+| [`docs/phases/`](docs/phases/)                                                         | All 22 phase guides, in order                      |
 
 ---
 

@@ -13,7 +13,10 @@ Deno.serve(async (req) => {
   }
 
   const json = (headers: Record<string, string>, status: number, body: Record<string, unknown>) =>
-    new Response(JSON.stringify(body), { status, headers: { ...headers, 'Content-Type': 'application/json' } });
+    new Response(JSON.stringify(body), {
+      status,
+      headers: { ...headers, 'Content-Type': 'application/json' },
+    });
 
   try {
     const { email, full_name, phone } = (await req.json()) as InviteRequest;
@@ -35,7 +38,10 @@ Deno.serve(async (req) => {
     const anonClient = createClient(supabaseUrl, anonKey, {
       global: { headers: { Authorization: authHeader } },
     });
-    const { data: { user: caller }, error: authError } = await anonClient.auth.getUser();
+    const {
+      data: { user: caller },
+      error: authError,
+    } = await anonClient.auth.getUser();
     if (authError || !caller) {
       return json(corsHeaders, 401, { error: 'Unauthorized' });
     }
@@ -80,7 +86,9 @@ Deno.serve(async (req) => {
     });
 
     if (linkError || !linkData?.user) {
-      return json(corsHeaders, 500, { error: linkError?.message ?? 'Failed to generate invite link' });
+      return json(corsHeaders, 500, {
+        error: linkError?.message ?? 'Failed to generate invite link',
+      });
     }
 
     const userId = linkData.user.id;
@@ -88,17 +96,16 @@ Deno.serve(async (req) => {
 
     // ── 4. Update profile with phone if provided ──
     if (phone) {
-      await adminClient
-        .from('profiles')
-        .update({ phone })
-        .eq('id', userId);
+      await adminClient.from('profiles').update({ phone }).eq('id', userId);
     }
 
     // ── 5. Insert company_members row ──
-    await adminClient.from('company_members').upsert(
-      { company_id: companyId, user_id: userId, role: 'driver' },
-      { onConflict: 'company_id,user_id' },
-    );
+    await adminClient
+      .from('company_members')
+      .upsert(
+        { company_id: companyId, user_id: userId, role: 'driver' },
+        { onConflict: 'company_id,user_id' },
+      );
 
     // ── 6. Fire-and-forget: send invite email ──
     const callerProfile = await adminClient

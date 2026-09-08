@@ -791,25 +791,43 @@ export function PostLoadSheet({ open, onClose, onCreated }: PostLoadSheetProps) 
             </p>
           )}
           {/* Profitability indicator — compares rate to market */}
-          {form.rateUsd && laneStats && laneStats.avg_rate_per_mile && laneStats.sample_count >= 3 && form.totalMiles && (() => {
-            const enteredRpm = parseFloat(form.rateUsd) / parseInt(form.totalMiles);
-            const marketAvg = laneStats.avg_rate_per_mile;
-            const delta = ((enteredRpm - marketAvg) / marketAvg) * 100;
-            const isLow = delta < -15;
-            const isFair = delta >= -15 && delta <= 5;
-            const isGood = delta > 5;
-            const borderColor = isLow ? 'border-fx-danger' : isFair ? 'border-fx-warning' : 'border-fx-success';
-            const textColor = isLow ? 'text-fx-danger' : isFair ? 'text-fx-warning' : 'text-fx-success';
-            return (
-              <div className={`mt-2 px-3 py-2 rounded-ios-xs border ${borderColor} bg-fx-surface-2`}>
-                <p className={`text-[11px] font-semibold ${textColor}`}>
-                  {isLow && '⚠ Low Rate Alert — '}
-                  {isGood ? 'Above' : isFair ? 'At' : 'Below'} market avg (${marketAvg.toFixed(2)}/mi)
-                  {' · '}{delta > 0 ? '+' : ''}{delta.toFixed(0)}%
-                </p>
-              </div>
-            );
-          })()}
+          {form.rateUsd &&
+            laneStats &&
+            laneStats.avg_rate_per_mile &&
+            laneStats.sample_count >= 3 &&
+            form.totalMiles &&
+            (() => {
+              const enteredRpm = parseFloat(form.rateUsd) / parseInt(form.totalMiles);
+              const marketAvg = laneStats.avg_rate_per_mile;
+              const delta = ((enteredRpm - marketAvg) / marketAvg) * 100;
+              const isLow = delta < -15;
+              const isFair = delta >= -15 && delta <= 5;
+              const isGood = delta > 5;
+              const borderColor = isLow
+                ? 'border-fx-danger'
+                : isFair
+                  ? 'border-fx-warning'
+                  : 'border-fx-success';
+              const textColor = isLow
+                ? 'text-fx-danger'
+                : isFair
+                  ? 'text-fx-warning'
+                  : 'text-fx-success';
+              return (
+                <div
+                  className={`mt-2 px-3 py-2 rounded-ios-xs border ${borderColor} bg-fx-surface-2`}
+                >
+                  <p className={`text-[11px] font-semibold ${textColor}`}>
+                    {isLow && '⚠ Low Rate Alert — '}
+                    {isGood ? 'Above' : isFair ? 'At' : 'Below'} market avg (${marketAvg.toFixed(2)}
+                    /mi)
+                    {' · '}
+                    {delta > 0 ? '+' : ''}
+                    {delta.toFixed(0)}%
+                  </p>
+                </div>
+              );
+            })()}
         </div>
 
         {/* Special flags */}
