@@ -75,8 +75,13 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # Every engine the config declares a project for. Installing only chromium
+      # while playwright.config.ts also runs `mobile-safari` (iPhone 14, WebKit)
+      # failed a third of the matrix on a missing executable rather than on
+      # anything about the app — and a phone browser is the one this product is
+      # most used in, so the fix is to install WebKit, not to drop the project.
       - name: Install Playwright browsers
-        run: pnpm --filter @freightx/web exec playwright install --with-deps chromium
+        run: pnpm --filter @freightx/web exec playwright install --with-deps chromium webkit
 
       - name: Build web (for E2E)
         run: pnpm build:web

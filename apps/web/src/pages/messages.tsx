@@ -1,6 +1,18 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Search, Send, ArrowLeft, Plus, X, Package, User, Loader2, Trash2, MapPin, MessageSquare } from 'lucide-react';
+import {
+  Search,
+  Send,
+  ArrowLeft,
+  Plus,
+  X,
+  Package,
+  User,
+  Loader2,
+  Trash2,
+  MapPin,
+  MessageSquare,
+} from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { TopHeader } from '@/shared/components/top-header';
 import { BottomNav } from '@/shared/components/bottom-nav';
@@ -452,9 +464,7 @@ export default function MessagesPage() {
         </div>
 
         {/* Load context banner */}
-        {selected.load_number && (
-          <MessageLoadContext loadNumber={selected.load_number} />
-        )}
+        {selected.load_number && <MessageLoadContext loadNumber={selected.load_number} />}
 
         {/* Messages */}
         <div className="flex-1 overflow-y-auto px-5 py-4 space-y-3">

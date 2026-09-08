@@ -7,9 +7,7 @@ export interface BrokerPaymentSummary {
   total_payments: number;
 }
 
-export async function getBrokerPaymentSummary(
-  companyId: string,
-): Promise<BrokerPaymentSummary> {
+export async function getBrokerPaymentSummary(companyId: string): Promise<BrokerPaymentSummary> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const { data, error } = await (supabase as any).rpc('get_broker_payment_summary', {
     p_company_id: companyId,

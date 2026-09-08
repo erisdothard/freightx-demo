@@ -1,6 +1,17 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Search, X, WifiOff, Settings2, Sparkles, Truck, ArrowRight, LayoutList, LayoutGrid, FileText } from 'lucide-react';
+import {
+  Search,
+  X,
+  WifiOff,
+  Settings2,
+  Sparkles,
+  Truck,
+  ArrowRight,
+  LayoutList,
+  LayoutGrid,
+  FileText,
+} from 'lucide-react';
 import { TopHeader } from '@/shared/components/top-header';
 import { BottomNav } from '@/shared/components/bottom-nav';
 import { EmptyState } from '@/shared/components/empty-state';
@@ -39,8 +50,8 @@ export default function CarrierLoadsPage() {
   const [aiFilters, setAiFilters] = useState<LoadFilters>({});
   const [selectedLoad, setSelectedLoad] = useState<Load | null>(null);
   const [prefsOpen, setPrefsOpen] = useState(false);
-  const [viewMode, setViewMode] = useState<'full' | 'compact'>(() =>
-    (localStorage.getItem('fx_load_view') as 'full' | 'compact') || 'full',
+  const [viewMode, setViewMode] = useState<'full' | 'compact'>(
+    () => (localStorage.getItem('fx_load_view') as 'full' | 'compact') || 'full',
   );
 
   // My Loads tab
@@ -196,7 +207,11 @@ export default function CarrierLoadsPage() {
           <TabsList className="w-full bg-fx-surface-2">
             <TabsTrigger
               value="my_loads"
-              className={cn('flex-1 gap-1.5', tab === 'my_loads' && 'bg-fx-orange text-white data-[state=active]:bg-fx-orange data-[state=active]:text-white')}
+              className={cn(
+                'flex-1 gap-1.5',
+                tab === 'my_loads' &&
+                  'bg-fx-orange text-white data-[state=active]:bg-fx-orange data-[state=active]:text-white',
+              )}
             >
               <Truck size={12} />
               My Loads
@@ -208,7 +223,11 @@ export default function CarrierLoadsPage() {
             </TabsTrigger>
             <TabsTrigger
               value="matches"
-              className={cn('flex-1 gap-1.5', tab === 'matches' && 'bg-fx-orange text-white data-[state=active]:bg-fx-orange data-[state=active]:text-white')}
+              className={cn(
+                'flex-1 gap-1.5',
+                tab === 'matches' &&
+                  'bg-fx-orange text-white data-[state=active]:bg-fx-orange data-[state=active]:text-white',
+              )}
             >
               <Sparkles size={12} />
               Matches
@@ -220,20 +239,32 @@ export default function CarrierLoadsPage() {
             </TabsTrigger>
             <TabsTrigger
               value="all"
-              className={cn('flex-1', tab === 'all' && 'bg-fx-orange text-white data-[state=active]:bg-fx-orange data-[state=active]:text-white')}
+              className={cn(
+                'flex-1',
+                tab === 'all' &&
+                  'bg-fx-orange text-white data-[state=active]:bg-fx-orange data-[state=active]:text-white',
+              )}
             >
               All
             </TabsTrigger>
             <TabsTrigger
               value="history"
-              className={cn('flex-1', tab === 'history' && 'bg-fx-orange text-white data-[state=active]:bg-fx-orange data-[state=active]:text-white')}
+              className={cn(
+                'flex-1',
+                tab === 'history' &&
+                  'bg-fx-orange text-white data-[state=active]:bg-fx-orange data-[state=active]:text-white',
+              )}
             >
               History
               {myHistory.length > 0 && (
-                <span className={cn(
-                  'text-[10px] font-bold px-1.5 py-0.5 rounded-full ml-1',
-                  tab === 'history' ? 'bg-white/20 text-white' : 'bg-fx-surface-3 text-fx-text-muted',
-                )}>
+                <span
+                  className={cn(
+                    'text-[10px] font-bold px-1.5 py-0.5 rounded-full ml-1',
+                    tab === 'history'
+                      ? 'bg-white/20 text-white'
+                      : 'bg-fx-surface-3 text-fx-text-muted',
+                  )}
+                >
                   {myHistory.length}
                 </span>
               )}
@@ -388,14 +419,28 @@ export default function CarrierLoadsPage() {
               icon={<Truck size={28} />}
               title="No active loads"
               subtitle="Bid on or book a load to see it here"
-              action={<button onClick={() => setTab('all')} className="text-sm font-semibold text-fx-orange">Browse Load Board →</button>}
+              action={
+                <button
+                  onClick={() => setTab('all')}
+                  className="text-sm font-semibold text-fx-orange"
+                >
+                  Browse Load Board →
+                </button>
+              }
             />
           ) : myAwarded.length + myInProgress.length + myDelivered.length + myBids.length === 0 ? (
             <EmptyState
               icon={<Truck size={28} />}
               title="No active loads right now"
               subtitle="Past loads are in History"
-              action={<button onClick={() => setTab('history')} className="text-sm font-semibold text-fx-orange">View History →</button>}
+              action={
+                <button
+                  onClick={() => setTab('history')}
+                  className="text-sm font-semibold text-fx-orange"
+                >
+                  View History →
+                </button>
+              }
             />
           ) : (
             <>
@@ -635,7 +680,14 @@ export default function CarrierLoadsPage() {
               icon={<Sparkles size={28} />}
               title="No strong matches yet"
               subtitle="Update your preferences or check All Loads"
-              action={<button onClick={() => setPrefsOpen(true)} className="text-sm font-semibold text-fx-orange">Set Preferences →</button>}
+              action={
+                <button
+                  onClick={() => setPrefsOpen(true)}
+                  className="text-sm font-semibold text-fx-orange"
+                >
+                  Set Preferences →
+                </button>
+              }
             />
           ) : (
             matchList.map((load) => (
@@ -643,7 +695,12 @@ export default function CarrierLoadsPage() {
                 <div className="absolute -top-1 right-0 z-10">
                   <MatchBadge score={load.matchScore} />
                 </div>
-                <LoadCard load={load} onPress={setSelectedLoad} onBid={setSelectedLoad} variant={viewMode} />
+                <LoadCard
+                  load={load}
+                  onPress={setSelectedLoad}
+                  onBid={setSelectedLoad}
+                  variant={viewMode}
+                />
               </div>
             ))
           )
@@ -673,7 +730,13 @@ export default function CarrierLoadsPage() {
           />
         ) : (
           loads.map((load) => (
-            <LoadCard key={load.id} load={load} onPress={setSelectedLoad} onBid={setSelectedLoad} variant={viewMode} />
+            <LoadCard
+              key={load.id}
+              load={load}
+              onPress={setSelectedLoad}
+              onBid={setSelectedLoad}
+              variant={viewMode}
+            />
           ))
         )}
       </div>

@@ -41,10 +41,9 @@ export function RiveAnimation({
   // Intersection observer for viewport-based playback
   useEffect(() => {
     if (!viewportPlay || !containerRef.current) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setInView(entry.isIntersecting),
-      { threshold: 0.1 },
-    );
+    const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), {
+      threshold: 0.1,
+    });
     observer.observe(containerRef.current);
     return () => observer.disconnect();
   }, [viewportPlay]);
